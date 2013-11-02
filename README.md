@@ -10,6 +10,7 @@ Installation
 ------------
 
 Just copy `signal11.h` in your project.
+You probably need to enable the C++11 mode of your compiler, `clang++` and `g++` use `-std=c++11`.
 
 Usage
 -----
