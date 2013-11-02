@@ -34,21 +34,7 @@ class signal11 {
   public:
 
   typedef std::function<void(Args...)> slot;
-
-  private:
-
-  std::list<slot> m_slots;
-
-  public:
-
-  // std::list::iterator is never invalidated
-  typedef typename decltype(m_slots)::iterator connection;
-
-  private:
-
-  std::list<connection> m_oneshot;
-
-  public:
+  typedef typename std::list<slot>::iterator connection; // std::list::iterator is never invalidated
 
   connection connect(slot slot) {
     m_slots.push_back(std::move(slot));
@@ -72,6 +58,11 @@ class signal11 {
       disconnect(connection);
     m_oneshot.clear();
   }
+
+  private:
+
+  std::list<slot> m_slots;
+  std::list<connection> m_oneshot;
 
 };
 
